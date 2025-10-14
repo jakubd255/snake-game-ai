@@ -20,7 +20,7 @@ class Snake:
                 game.game_over("Snake hit the wall!")
                 #raise Exception("Game Over: Snake hit the wall!")
 
-        new_head = (new_x, new_y)
+        new_head = [new_x, new_y]
 
         if new_head in self.segments:
             game.game_over("Snake collided with itself!")

@@ -54,7 +54,7 @@ class Game:
         self.snake.draw(self.screen, pygame)
         Fonts.draw_score(self.screen, self.score)
 
-    def hanle_eat_food(self):
+    def handle_eat_food(self):
         if self.snake.segments[0] == self.food.position:
             self.score+=1
             self.snake.grow()
@@ -74,7 +74,7 @@ class Game:
     def update(self):
         if self.delta_time() and not self.is_game_over:
             self.snake.move(self)
-            self.hanle_eat_food()
+            self.handle_eat_food()
         elif self.is_game_over:
             Fonts.draw_game_over(self.screen, self.game_over_message)
         pygame.display.flip()
