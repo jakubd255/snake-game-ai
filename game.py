@@ -64,7 +64,7 @@ class Game:
         self.clock.tick(60)
 
     def run(self):
-        while(True):
+        while True:
             self.handle_events()
             self.draw()
             self.update()
