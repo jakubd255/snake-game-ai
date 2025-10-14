@@ -1,3 +1,4 @@
+import pygame
 import config
 from direction import Direction
 
@@ -35,7 +36,7 @@ class Snake:
     def grow(self):
         self.grow_next = True
 
-    def draw(self, screen, pygame):
+    def draw(self, screen):
         for i, cell in enumerate(self.segments):
             color = config.GREEN_LIGHT if i == 0 else config.GREEN_DARK
             segment = pygame.rect.Rect(cell[0]*config.CELL_SIZE, cell[1]*config.CELL_SIZE, config.CELL_SIZE, config.CELL_SIZE)
@@ -45,3 +46,6 @@ class Snake:
         self.segments = [[config.CELLS_NUMBER//2]*2]
         self.direction = Direction.UP
         self.grow_next = False
+
+    def set_direction_by_key(self, key):
+        self.direction = Direction.next_direction(self.direction, key)
