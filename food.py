@@ -14,5 +14,5 @@ class Food:
         y = random.randint(0, config.CELLS_NUMBER-1)
         return (x, y)
     
-    def respawn(self):
+    def reset(self):
         self.position = self.generate_position()
