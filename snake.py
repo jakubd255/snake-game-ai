@@ -36,9 +36,10 @@ class Snake:
         self.grow_next = True
 
     def draw(self, screen, pygame):
-        for cell in self.segments:
+        for i, cell in enumerate(self.segments):
+            color = config.GREEN_LIGHT if i == 0 else config.GREEN_DARK
             segment = pygame.rect.Rect(cell[0]*config.CELL_SIZE, cell[1]*config.CELL_SIZE, config.CELL_SIZE, config.CELL_SIZE)
-            pygame.draw.rect(screen, config.GREEN, segment)
+            pygame.draw.rect(screen, color, segment)
 
     def reset(self):
         self.segments = [[config.CELLS_NUMBER//2]*2]
