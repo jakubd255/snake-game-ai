@@ -33,7 +33,7 @@ class Direction(Enum):
         return mapping.get(key)
     
     @staticmethod
-    def next_direction(current, key):
+    def get_direction_by_key(current, key):
         new_dir = Direction.from_key(key)
         if new_dir and not current.is_opposite(new_dir):
             return new_dir

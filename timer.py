@@ -2,8 +2,10 @@ import pygame
 import config
 
 class Timer:
-    def __init__(self):
-        self.stop_delay = config.STOP_DELAY
+    def __init__(self, disable_speed_up=False, stop_delay=config.STOP_DELAY):
+        self.disable_speed_up = disable_speed_up
+        self.init_stop_delay = stop_delay
+        self.stop_delay = stop_delay
         self.time = 0
         self.clock = pygame.time.Clock()
 
@@ -18,8 +20,8 @@ class Timer:
         self.clock.tick(fps)
 
     def speed_up(self):
-        if self.stop_delay > 20:
+        if not self.disable_speed_up and self.stop_delay > 20:
             self.stop_delay -= 5
 
     def reset_speed(self):
-        self.stop_delay = config.STOP_DELAY
+        self.stop_delay = self.init_stop_delay

@@ -6,8 +6,9 @@ def quit_game():
     sys.exit()
 
 class EventHandler:
-    def __init__(self, game):
+    def __init__(self, game, disable_change_direction=False):
         self.game = game
+        self.disable_change_direction = disable_change_direction
     
     def handle_events(self):
         for event in pygame.event.get():
@@ -21,5 +22,5 @@ class EventHandler:
             quit_game()
         elif key == pygame.K_SPACE and self.game.is_game_over:
             self.game.restart()
-        else: 
+        elif not self.disable_change_direction:
             self.game.snake.set_direction_by_key(key)

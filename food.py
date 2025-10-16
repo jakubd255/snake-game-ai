@@ -1,4 +1,3 @@
-import pygame
 import config
 import random
 
@@ -19,10 +18,6 @@ def generate_position(snake):
 class Food:
     def __init__(self, snake):
         self.position = generate_position(snake)
-
-    def draw(self, screen):
-        rect = pygame.rect.Rect(self.position[0]*config.CELL_SIZE, self.position[1]*config.CELL_SIZE, config.CELL_SIZE, config.CELL_SIZE)
-        pygame.draw.rect(screen, config.RED, rect)
 
     def reset(self, snake):
         self.position = generate_position(snake)
