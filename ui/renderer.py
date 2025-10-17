@@ -1,7 +1,7 @@
 import pygame
-import config
-from ai_helper import AIHelper
-from text_renderer import TextRenderer
+from core import config
+from ai.ai_helper import AIHelper
+from ui.text_renderer import TextRenderer
 
 class Renderer:
     def __init__(self, screen, game):
@@ -18,11 +18,11 @@ class Renderer:
     def draw_snake(self, snake):
         for i, cell in enumerate(snake.segments):
             color = config.GREEN_LIGHT if i == 0 else config.GREEN_DARK
-            segment = pygame.rect.Rect(cell[0]*config.CELL_SIZE, cell[1]*config.CELL_SIZE, config.CELL_SIZE, config.CELL_SIZE)
+            segment = pygame.rect.Rect(cell[0] * config.CELL_SIZE, cell[1] * config.CELL_SIZE, config.CELL_SIZE, config.CELL_SIZE)
             pygame.draw.rect(self.screen, color, segment)
 
     def draw_food(self, food):
-        rect = pygame.rect.Rect(food.position[0]*config.CELL_SIZE, food.position[1]*config.CELL_SIZE, config.CELL_SIZE, config.CELL_SIZE)
+        rect = pygame.rect.Rect(food.position[0] * config.CELL_SIZE, food.position[1] * config.CELL_SIZE, config.CELL_SIZE, config.CELL_SIZE)
         pygame.draw.rect(self.screen, config.RED, rect)
 
     def draw(self):

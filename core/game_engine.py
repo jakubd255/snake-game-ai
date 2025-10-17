@@ -1,7 +1,7 @@
 import pygame
-import config
-from event_handler import EventHandler
-from renderer import Renderer
+from core import config
+from core.event_handler import EventHandler
+from ui.renderer import Renderer
 
 class GameEngine:
     def __init__(self, game, control, timer):
@@ -11,7 +11,7 @@ class GameEngine:
         self.control = control
         self.events = EventHandler(self)
         self.timer = timer
-        self.screen = pygame.display.set_mode([config.WINDOW_SIZE]*2, flags=pygame.SCALED, vsync=1)
+        self.screen = pygame.display.set_mode([config.WINDOW_SIZE] * 2, flags=pygame.SCALED, vsync=1)
         self.renderer = Renderer(self.screen, self.game)
 
     def restart(self):

@@ -1,4 +1,4 @@
-import config
+from core import config
 import random
 
 def is_available(position, snake):

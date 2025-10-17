@@ -1,5 +1,5 @@
-import config
-from direction import Direction
+from core import config
+from entities.direction import Direction
 
 class AIHelper:
     def __init__(self, game):

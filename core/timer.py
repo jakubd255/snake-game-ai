@@ -1,5 +1,5 @@
 import pygame
-import config
+from core import config
 
 class Timer:
     def __init__(self, disable_speed_up=False, stop_delay=config.STOP_DELAY):

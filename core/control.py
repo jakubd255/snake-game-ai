@@ -1,5 +1,5 @@
 import pygame
-from ai_helper import AIHelper
+from ai.ai_helper import AIHelper
 
 class ControlStrategy:
     def control(self, events, is_ready):

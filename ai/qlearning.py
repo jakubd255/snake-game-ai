@@ -1,9 +1,9 @@
 import random
-from ai_helper import AIHelper
-from control import AIControl
-from game import Game
-from game_engine import GameEngine
-from timer import Timer
+from ai.ai_helper import AIHelper
+from core.control import AIControl
+from core.game import Game
+from core.game_engine import GameEngine
+from core.timer import Timer
 
 NUM_ACTIONS = 3
 LEARNING_RATE = 0.1 #alpha
