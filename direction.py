@@ -38,3 +38,16 @@ class Direction(Enum):
         if new_dir and not current.is_opposite(new_dir):
             return new_dir
         return current
+
+    @staticmethod
+    def get_direction_by_action(current, action):
+        directions = [Direction.UP, Direction.RIGHT, Direction.DOWN, Direction.LEFT]
+        current_index = directions.index(current)
+
+        new_index = current_index
+        if action == 1:  # Turn left
+            new_index = (current_index - 1) % 4
+        elif action == 2:  # Turn right
+            new_index = (current_index + 1) % 4
+
+        return directions[new_index]

@@ -6,21 +6,18 @@ def quit_game():
     sys.exit()
 
 class EventHandler:
-    def __init__(self, game, disable_change_direction=False):
-        self.game = game
+    def __init__(self, engine, disable_change_direction=False):
+        self.engine = engine
         self.disable_change_direction = disable_change_direction
     
     def handle_events(self):
-        for event in pygame.event.get():
+        events = pygame.event.get()
+        for event in events:
             if event.type == pygame.QUIT:
                 quit_game()
             elif event.type == pygame.KEYDOWN:
-                self.handle_keydown(event.key)
-
-    def handle_keydown(self, key):
-        if key == pygame.K_ESCAPE:
-            quit_game()
-        elif key == pygame.K_SPACE and self.game.is_game_over:
-            self.game.restart()
-        elif not self.disable_change_direction:
-            self.game.snake.set_direction_by_key(key)
+                if event.key == pygame.K_ESCAPE:
+                    quit_game()
+                elif event.key == pygame.K_SPACE and self.engine.game.is_game_over:
+                    self.engine.restart()
+        return events

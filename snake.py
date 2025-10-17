@@ -42,3 +42,6 @@ class Snake:
 
     def set_direction_by_key(self, key):
         self.direction = Direction.get_direction_by_key(self.direction, key)
+
+    def set_direction_by_action(self, action):
+        self.direction = Direction.get_direction_by_action(self.direction, action)

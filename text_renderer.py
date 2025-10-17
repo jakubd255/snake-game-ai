@@ -3,7 +3,7 @@ import config
 
 pygame.font.init()
 
-class Fonts:
+class TextRenderer:
     SCORE_FONT = pygame.font.SysFont(None, 30)
     GAME_OVER_FONT = pygame.font.SysFont(None, 85)
     GAME_OVER_MESSAGE_FONT = pygame.font.SysFont(None, 40)
@@ -17,10 +17,10 @@ class Fonts:
 
     @staticmethod
     def draw_score(screen, score):
-        score_text = Fonts.SCORE_FONT.render(f"Score: {score}", True, config.WHITE)
+        score_text = TextRenderer.SCORE_FONT.render(f"Score: {score}", True, config.WHITE)
         screen.blit(score_text, (10, 10))
 
     @staticmethod
     def draw_game_over(screen, message):
-        Fonts.draw_text_center(screen, "Game Over", Fonts.GAME_OVER_FONT)
-        Fonts.draw_text_center(screen, message, Fonts.GAME_OVER_MESSAGE_FONT, y_offset=50)
+        TextRenderer.draw_text_center(screen, "Game Over", TextRenderer.GAME_OVER_FONT)
+        TextRenderer.draw_text_center(screen, message, TextRenderer.GAME_OVER_MESSAGE_FONT, y_offset=50)

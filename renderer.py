@@ -1,10 +1,13 @@
 import pygame
 import config
-from fonts import Fonts
+from ai_helper import AIHelper
+from text_renderer import TextRenderer
 
 class Renderer:
-    def __init__(self, screen):
+    def __init__(self, screen, game):
         self.screen = screen
+        self.game = game
+        self.ai_helper = AIHelper(self.game)
 
     def draw_grid(self):
         for x in range(0, config.WINDOW_SIZE, config.CELL_SIZE):
@@ -22,11 +25,11 @@ class Renderer:
         rect = pygame.rect.Rect(food.position[0]*config.CELL_SIZE, food.position[1]*config.CELL_SIZE, config.CELL_SIZE, config.CELL_SIZE)
         pygame.draw.rect(self.screen, config.RED, rect)
 
-    def draw(self, game):
+    def draw(self):
         self.screen.fill(config.BLACK)
         self.draw_grid()
-        self.draw_food(game.food)
-        self.draw_snake(game.snake)
-        Fonts.draw_score(self.screen, game.score)
-        if game.is_game_over:
-            Fonts.draw_game_over(self.screen, game.game_over_message)
+        self.draw_food(self.game.food)
+        self.draw_snake(self.game.snake)
+        TextRenderer.draw_score(self.screen, self.game.score)
+        if self.game.is_game_over:
+            TextRenderer.draw_game_over(self.screen, self.game.game_over_message)
