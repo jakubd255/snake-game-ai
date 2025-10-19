@@ -1,18 +1,14 @@
 import pygame
-from core import config
 from core.event_handler import EventHandler
 from ui.renderer import Renderer
 
 class GameEngine:
     def __init__(self, game, control, timer):
-        pygame.init()
-        pygame.display.set_caption("Snake")
         self.game = game
         self.control = control
-        self.events = EventHandler(self)
         self.timer = timer
-        self.screen = pygame.display.set_mode([config.WINDOW_SIZE] * 2, flags=pygame.SCALED, vsync=1)
-        self.renderer = Renderer(self.screen, self.game)
+        self.events = EventHandler(self)
+        self.renderer = Renderer(self.game)
 
     def restart(self):
         self.timer.reset_speed()

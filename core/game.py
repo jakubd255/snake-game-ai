@@ -4,8 +4,10 @@ from entities.food import Food
 
 class Game:
     def __init__(self, wrap_map=config.WRAP_MAP):
-        self.snake = Snake()
-        self.food = Food(self.snake)
+        self.width = config.WIDTH
+        self.height = config.HEIGHT
+        self.snake = Snake(self.width, self.height)
+        self.food = Food(self.snake, self.width, self.height)
         self.score = 0
         self.is_game_over = False
         self.game_over_message = ""
@@ -33,10 +35,10 @@ class Game:
 
     def handle_collision(self):
         x, y = self.snake.get_head()
-        if not (0 <= x < config.CELLS_NUMBER) or not (0 <= y < config.CELLS_NUMBER):
+        if not (0 <= x < self.width) or not (0 <= y < self.height):
             if self.wrap_map:
-                x %= config.CELLS_NUMBER
-                y %= config.CELLS_NUMBER
+                x %= self.width
+                y %= self.height
                 self.snake.set_head([x, y])
             else:
                 self.game_over("Snake hit the wall!")

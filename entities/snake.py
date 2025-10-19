@@ -1,9 +1,10 @@
-from core import config
 from entities.direction import Direction
 
 class Snake:
-    def __init__(self):
-        self.segments = [[config.CELLS_NUMBER // 2] * 2]
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.segments = [[self.width//2, self.height//2]]
         self.direction = Direction.UP
         self.grow_next = False
 
@@ -28,7 +29,7 @@ class Snake:
         self.grow_next = True
 
     def reset(self):
-        self.segments = [[config.CELLS_NUMBER // 2] * 2]
+        self.segments = [[self.width//2, self.height//2]]
         self.direction = Direction.UP
         self.grow_next = False
 
@@ -39,4 +40,6 @@ class Snake:
         self.direction = Direction.get_direction_by_key(self.direction, key)
 
     def set_direction_by_action(self, action):
-        self.direction = Direction.get_direction_by_action(self.direction, action)
+        new_direction = Direction.get_direction_by_action(action)
+        if not self.direction.is_opposite(new_direction):
+            self.direction = new_direction

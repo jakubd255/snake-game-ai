@@ -4,16 +4,20 @@ from ai.ai_helper import AIHelper
 from ui.text_renderer import TextRenderer
 
 class Renderer:
-    def __init__(self, screen, game):
-        self.screen = screen
+    def __init__(self, game):
+        pygame.init()
+        pygame.display.set_caption("Snake")
         self.game = game
+        self.width = self.game.width*config.CELL_SIZE
+        self.height = self.game.height*config.CELL_SIZE
+        self.screen = pygame.display.set_mode([self.width, self.height], flags=pygame.SCALED, vsync=1)
         self.ai_helper = AIHelper(self.game)
 
     def draw_grid(self):
-        for x in range(0, config.WINDOW_SIZE, config.CELL_SIZE):
-            pygame.draw.line(self.screen, [50] * 3, (x, 0), (x, config.WINDOW_SIZE))
-        for y in range(0, config.WINDOW_SIZE, config.CELL_SIZE):
-            pygame.draw.line(self.screen, [50] * 3, (0, y), (config.WINDOW_SIZE, y))
+        for x in range(0, self.width, config.CELL_SIZE):
+            pygame.draw.line(self.screen, [50]*3, (x, 0), (x, self.height))
+        for y in range(0, self.height, config.CELL_SIZE):
+            pygame.draw.line(self.screen, [50]*3, (0, y), (self.width, y))
 
     def draw_snake(self, snake):
         for i, cell in enumerate(snake.segments):
