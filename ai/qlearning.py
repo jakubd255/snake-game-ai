@@ -1,9 +1,10 @@
 import random
 from ai.ai_helper import AIHelper
 from core.control import AIControl
-from core.game import Game
 from core.game_engine import GameEngine
 from core.timer import Timer
+from creators.game_builder import GameBuilder
+from ui.renderer import Renderer
 
 NUM_ACTIONS = 4
 LEARNING_RATE = 0.1
@@ -15,7 +16,7 @@ EPISODES = 5_000
 class QLearning:
     def __init__(self):
         self.q = {} #Q[state] = [left, right, up, down]
-        self.game = Game(False)
+        self.game = GameBuilder().wrap_map(False).build()
         self.ai_helper = AIHelper(self.game)
         self.state = self.ai_helper.get_state()
         self.done = False
@@ -75,10 +76,11 @@ class QLearning:
                 print(f"Episode {episode}: reward = {reward}")
 
     def play_trained(self):
-        game = Game(False)
+        game = GameBuilder().wrap_map(False).build()
         control = AIControl(game, self.q, self)
         timer = Timer(True, 50)
-        GameEngine(game, control, timer).run()
+        renderer = Renderer(game, "Snake AI")
+        GameEngine(game, control, timer, renderer).run()
 
 if __name__ == "__main__":
     qlearning = QLearning()

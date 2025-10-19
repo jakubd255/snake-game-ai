@@ -1,14 +1,13 @@
 import pygame
 from core.event_handler import EventHandler
-from ui.renderer import Renderer
 
 class GameEngine:
-    def __init__(self, game, control, timer):
+    def __init__(self, game, control, timer, renderer):
         self.game = game
         self.control = control
         self.timer = timer
+        self.renderer = renderer
         self.events = EventHandler(self)
-        self.renderer = Renderer(self.game)
 
     def restart(self):
         self.timer.reset_speed()

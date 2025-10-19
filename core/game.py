@@ -1,13 +1,9 @@
-from core import config
-from entities.snake import Snake
-from entities.food import Food
-
 class Game:
-    def __init__(self, wrap_map=config.WRAP_MAP):
-        self.width = config.WIDTH
-        self.height = config.HEIGHT
-        self.snake = Snake(self.width, self.height)
-        self.food = Food(self.snake, self.width, self.height)
+    def __init__(self, snake, food, width, height, wrap_map):
+        self.width = width
+        self.height = height
+        self.snake = snake
+        self.food = food
         self.score = 0
         self.is_game_over = False
         self.game_over_message = ""
