@@ -82,7 +82,10 @@ class QLearning:
         renderer = Renderer(game, "Snake AI")
         GameEngine(game, control, timer, renderer).run()
 
-if __name__ == "__main__":
+def main():
     qlearning = QLearning()
     qlearning.train()
     qlearning.play_trained()
+
+if __name__ == "__main__":
+    main()

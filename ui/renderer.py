@@ -20,17 +20,18 @@ class Renderer:
             pygame.draw.line(self.screen, [50]*3, (0, y), (self.width, y))
 
     def draw_snake(self, snake):
-        for i, cell in enumerate(snake.segments):
-            color = colors.GREEN_LIGHT if i == 0 else colors.GREEN_DARK
+        for i, cell in enumerate(reversed(snake.segments)):
+            color = colors.SNAKE_HEAD if i == len(snake.segments)-1 else colors.SNAKE_BODY
             segment = pygame.rect.Rect(cell[0]*defaults.CELL_SIZE, cell[1]*defaults.CELL_SIZE, defaults.CELL_SIZE, defaults.CELL_SIZE)
             pygame.draw.rect(self.screen, color, segment)
 
     def draw_food(self, food):
         rect = pygame.rect.Rect(food.position[0]*defaults.CELL_SIZE, food.position[1]*defaults.CELL_SIZE, defaults.CELL_SIZE, defaults.CELL_SIZE)
-        pygame.draw.rect(self.screen, colors.RED, rect)
+        pygame.draw.rect(self.screen, colors.FOOD, rect)
 
     def draw(self):
-        self.screen.fill(colors.BLACK)
+        pygame.display.flip()
+        self.screen.fill(colors.BACKGROUND)
         self.draw_grid()
         self.draw_food(self.game.food)
         self.draw_snake(self.game.snake)

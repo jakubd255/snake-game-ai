@@ -1,4 +1,3 @@
-import pygame
 from core.event_handler import EventHandler
 
 class GameEngine:
@@ -23,5 +22,4 @@ class GameEngine:
                 is_food_eaten = self.game.update()
                 if is_food_eaten:
                     self.timer.speed_up()
-            pygame.display.flip()
             self.timer.tick_fps()

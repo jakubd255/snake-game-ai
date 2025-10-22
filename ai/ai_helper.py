@@ -10,10 +10,10 @@ class AIHelper:
         y += direction.y
 
         if not (0 <= x < self.game.width) or not (0 <= y < self.game.height):
-            return 1
+            return True
         if [x, y] in self.game.snake.segments:
-            return 1
-        return 0
+            return True
+        return False
 
     def get_state(self):
         head_x, head_y = self.game.snake.segments[0]
@@ -24,10 +24,10 @@ class AIHelper:
         direction_up = self.game.snake.direction == Direction.UP
         direction_down = self.game.snake.direction == Direction.DOWN
 
-        food_left = 1 if food_x < head_x else 0
-        food_right = 1 if food_x > head_x else 0
-        food_up = 1 if food_y < head_y else 0
-        food_down = 1 if food_y > head_y else 0
+        food_left = food_x < head_x
+        food_right = food_x > head_x
+        food_up = food_y < head_y
+        food_down = food_y > head_y
 
         danger_left = self.is_collision_ahead(Direction.LEFT)
         danger_right = self.is_collision_ahead(Direction.RIGHT)
